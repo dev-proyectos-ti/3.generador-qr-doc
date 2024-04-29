@@ -38,6 +38,7 @@ export class LoadFileComponent implements OnInit {
   ngOnInit(): void {}
 
   onCargarArchivo(event: any): void {
+    this.onLimpiar();
     this.mensajes.mostrarLoading();
 
     const files = event.target.files;
