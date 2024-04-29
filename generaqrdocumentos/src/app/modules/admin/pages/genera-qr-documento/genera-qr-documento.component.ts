@@ -30,10 +30,10 @@ export class GeneraQrDocumentoComponent implements OnInit  {
     }
 
     this.mensaje.mostrarLoading();
-    const urlQR='http://172.17.17.179:8080/share/page/site/repositorio-de-archivos/document-details?nodeRef=workspace://SpacesStore/46da5b70-a607-43b9-83bd-c7ed9e99729f';
+    const urlQR='https://www.gob.pe/minjus';
     const tamanio=300;
-    const startX=500;
-    const startY=10;
+    const startX=520;
+    const startY=770;
     this.archivos.data.forEach((file: any, index: any) => {
       file.index = index;
       this.generaQRDocumentosService.generaQRDocumentos(file.file,tamanio,startX,startY,urlQR).subscribe({
