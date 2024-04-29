@@ -1,0 +1,37 @@
+{"properties": [
+  {
+    "name": "url.firmux.service",
+    "type": "java.lang.String",
+    "description": "A description for 'url.firmux.service'"
+  },
+  {
+    "name": "firmux.validation.status",
+    "type": "java.lang.String",
+    "description": "A description for 'firmux.validation.status'"
+  },
+  {
+    "name": "firmux.trust.status",
+    "type": "java.lang.String",
+    "description": "A description for 'firmux.trust.status'"
+  },
+  {
+    "name": "firmux.revocation.status",
+    "type": "java.lang.String",
+    "description": "A description for 'firmux.revocation.status'"
+  },
+  {
+    "name": "firmux.validity.status",
+    "type": "java.lang.String",
+    "description": "A description for 'firmux.validity.status'"
+  },
+  {
+    "name": "range.ip",
+    "type": "java.lang.String",
+    "description": "A description for 'range.ip'"
+  },
+  {
+    "name": "acceso.libre",
+    "type": "java.lang.Integer",
+    "description": "A description for 'acceso.libre'"
+  }
+]}

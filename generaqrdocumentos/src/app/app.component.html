@@ -1,0 +1,38 @@
+<mat-sidenav-container class="flex h-screen bg-gray-200">
+
+    <mat-sidenav-content>
+      <div class="flex flex-col min-h-screen">
+  
+        <!-- Contenido Principal -->
+        <div class="flex-grow">
+          <div class="flex justify-between items-center bg-minjus_red text-white">
+            <div class="p-2 flex flex-wrap items-center gap-2 text-xl">
+                <img src="assets/images/logo-minjus.png" class="h-12" />
+                <a href="">Plataforma de Firma Digital MINJUSDH</a>             
+            </div>
+            <div class="m-1 text-minjus_red">
+              <!--
+              <h1>ELDEN GUTIERREZ MARTINEZ</h1>
+              -->
+            </div>
+          </div>
+  
+          <div class="p-2 md:m-4">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+  
+        <!-- Footer -->
+        <div class="mt-auto">
+          <div class="bg-minjus_black text-white p-2">
+            <div class="flex flex-wrap justify-between items-center">
+              <div class="p-0">MINJUSDH 2024 © Todos los derechos reservados<br>Sistema elaborado por MINJUS</div>
+              <div class="p-0">Correo: consultas&#64;minjus.gob.pe - Teléfono: 01 315 2X00</div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+    </mat-sidenav-content>
+  </mat-sidenav-container>

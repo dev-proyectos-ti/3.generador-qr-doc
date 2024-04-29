@@ -1,0 +1,13 @@
+package pe.gob.minjus.generaqrdocumentos;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GeneraQRDocumentosApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GeneraQRDocumentosApplication.class, args);
+	}
+
+}

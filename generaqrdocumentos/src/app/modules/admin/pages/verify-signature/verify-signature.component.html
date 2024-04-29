@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="flex flex-col gap-2">
+        <div class="font-semibold text-xl text-minjus_blue">
+            <span>Validador de Firmas Digitales</span>
+          </div>
+      
+          <mat-divider class="bg-minjus_blue"></mat-divider>
+    
+        <div class="font-semibold text-lg text-minjus_blue mt-3">
+            <span>Archivos</span>
+        </div>
+    </div>
+
+    <div>
+        <app-load-file [objeto]="archivos"></app-load-file>
+
+        <div class="w-full text-right mt-4">
+            <button mat-flat-button class="!bg-minjus_primary !text-white !text-lg" (click)="onValidar()">
+                <mat-icon><span class="material-symbols-outlined">sync</span></mat-icon>
+                Validar
+            </button>
+        </div>
+    </div>
+
+</div>
