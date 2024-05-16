@@ -124,21 +124,6 @@ public class GeneraQRDocumentosService implements IGeneraQRDocumentosService {
         }
     }
     
- // Convertir la matriz de bits del código QR en un array de bytes
-    private static byte[] bitMatrixToByteArray(BitMatrix bitMatrix) {
-        List<Byte> byteList = new ArrayList<>();
-        for (int y = 0; y < bitMatrix.getHeight(); y++) {
-            for (int x = 0; x < bitMatrix.getWidth(); x++) {
-                byteList.add((byte) (bitMatrix.get(x, y) ? 1 : 0));
-            }
-        }
-        byte[] byteArray = new byte[byteList.size()];
-        for (int i = 0; i < byteList.size(); i++) {
-            byteArray[i] = byteList.get(i);
-        }
-        return byteArray;
-    }
-    
     
     public void generateQRCode(String contenigoqr) {
         try {
@@ -167,16 +152,6 @@ public class GeneraQRDocumentosService implements IGeneraQRDocumentosService {
         MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));
         
     }
-    
-    private String prepareOutputFileNamePDF() {
-        Date date = new Date();
 
-        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
-        String formattedDate= dateFormat.format(date);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(outputLocation).append("\\").append("QRCode-").append(formattedDate).append(".pdf");
-        return sb.toString();
-    }
     
 }
