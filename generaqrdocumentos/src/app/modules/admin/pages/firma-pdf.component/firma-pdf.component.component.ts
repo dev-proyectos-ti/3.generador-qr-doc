@@ -15,6 +15,7 @@ export class FirmaPdfComponentComponent implements OnInit  {
   documentName = 'example.pdf';
   documentID = 'example123';
   type = 'PAdES'; // Tipo de firma
+  documento = 'example.pdf';
 
   constructor(
     private mensaje: MensajesService,
@@ -23,6 +24,8 @@ export class FirmaPdfComponentComponent implements OnInit  {
   ) {}
 
   ngOnInit(): void {
+    //this.documento='C:\\ejemplo-pdf.pdf';
+    this.documento='https://drive.usercontent.google.com/download?id=14DHwoJwX0_YV2PddIh8rpU4wJgjR-IVr&export=download&authuser=0';
   }
 
   onVerPDF(): void {
@@ -47,7 +50,8 @@ export class FirmaPdfComponentComponent implements OnInit  {
     this.archivos.data.forEach((file: any, index: any) => {
         file.index = index;         
         //const blob = UtilMinjus.b64toBlob(file.file, 'application/pdf');
-        this.mostrarPDF(file.file);
+        this.documento=file.file;
+        //this.mostrarPDF(file.file);
     });
   }
 
@@ -62,36 +66,8 @@ export class FirmaPdfComponentComponent implements OnInit  {
   }
 
   sendForm(event: Event): void {
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData();
-
-    // Agrega los valores del formulario a FormData
-    const documentUrl = form.querySelector('.bit4id-document')?.textContent || '';
-    const documentName = form.querySelector('.bit4id-documentName')?.textContent || '';
-    const signatureType = form.querySelector('.bit4id-signatureType')?.textContent || '';
-    const signingAlgorithm = form.querySelector('.bit4id-signingAlgorithm')?.textContent || '';
-    const certInfo = form.querySelector('.bit4id-certInfo')?.textContent || '';
-    const cmd = 'Sign Document';
-    const id = form.querySelector('#bit4id-status')?.textContent || '';
-
-    console.log('documentUrl', documentUrl);
-    console.log('documentName', documentName);
-    console.log('signatureType', signatureType);
-    console.log('signingAlgorithm', signingAlgorithm);
-    console.log('certInfo', certInfo);
-    console.log('cmd', cmd);
-    console.log('id', id);
-
-    formData.append('documentUrl', documentUrl);
-    formData.append('documentName', documentName);
-    formData.append('signatureType', signatureType);
-    formData.append('signingAlgorithm', signingAlgorithm);
-    formData.append('certInfo', certInfo);
-    formData.append('cmd', cmd);
-    formData.append('id', id);
-
-    // Enviar el formulario al backend usando HttpClient
-    console.log(formData);
+    //this.onFirmarPDF();
+    
   }
 
   
