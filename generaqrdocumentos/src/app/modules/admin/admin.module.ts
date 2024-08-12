@@ -14,6 +14,7 @@ import { LoadFileComponent } from '../transversal/components/load-file/load-file
 import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GeneraQrDocumentoComponent } from './pages/genera-qr-documento/genera-qr-documento.component';
+import { FirmaPdfComponentComponent } from './pages/firma-pdf.component/firma-pdf.component.component';
 
 
 
@@ -21,7 +22,8 @@ import { GeneraQrDocumentoComponent } from './pages/genera-qr-documento/genera-q
   declarations: [
     VerifySignatureComponent,
     PrincipalComponent,
-    GeneraQrDocumentoComponent
+    GeneraQrDocumentoComponent,
+    FirmaPdfComponentComponent
   ],
   imports: [
     CommonModule,

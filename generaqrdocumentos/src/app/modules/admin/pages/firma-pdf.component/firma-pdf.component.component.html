@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="flex flex-col gap-2">
+        <div class="font-semibold text-xl text-minjus_blue">
+            <span>Firmar PDF</span>
+          </div>
+      
+          <mat-divider class="bg-minjus_blue"></mat-divider>
+    
+        <div class="font-semibold text-lg text-minjus_blue mt-3">
+            <span>Archivos</span>
+        </div>
+    </div>
+
+    <div>
+        <app-load-file [objeto]="archivos"></app-load-file>
+
+        <div class="w-full text-right mt-4">
+            <button mat-flat-button class="!bg-minjus_primary !text-white !text-lg" (click)="onVerPDF()">
+                <mat-icon><span class="material-symbols-outlined">visibility</span></mat-icon>
+                Ver PDF
+            </button>
+        </div>
+        <div class="w-full text-right mt-4">
+            <button mat-flat-button class="!bg-minjus_primary !text-white !text-lg" (click)="initiateSigning()">
+                <mat-icon><span class="material-symbols-outlined">edit</span></mat-icon>
+                Firmra PDF
+            </button>
+        </div>
+    </div>
+    <div *ngIf="pdfSrc">
+        <iframe [src]="pdfSrc" width="100%" height="600px" frameborder="0"></iframe>
+    </div>
+
+</div>
+
+<div>
+    <form class="bit4id-sign" (ngSubmit)="sendForm($event)">
+      <div class="bit4id-signReq" style="display: none;">
+        <div class="bit4id-document">
+            https://drive.google.com/file/d/14DHwoJwX0_YV2PddIh8rpU4wJgjR-IVr/view?usp=sharing
+        </div>
+        <div class="bit4id-documentName">TEST PDF DOCUMENT</div>
+        <div class="bit4id-signatureType">PAdES</div>
+        <div class="bit4id-signingAlgorithm">RSASHA256</div>
+        <div class="bit4id-certInfo">CN</div>
+      </div>
+      <div>
+        <fieldset>
+          <div><h3>Document Signature</h3></div>
+          <div><p><strong>Proceeding the document TestData.pdf will be signed, are you sure?</strong></p></div>
+          <div id="bit4id-status"></div>
+          <div>
+            <input type="submit" value="Sign Document" name="cmd">
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+
+  
