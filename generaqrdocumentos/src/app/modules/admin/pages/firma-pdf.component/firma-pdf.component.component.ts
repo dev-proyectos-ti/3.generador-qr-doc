@@ -65,8 +65,7 @@ export class FirmaPdfComponentComponent implements OnInit  {
     });
   }
 
-  sendForm(event: Event): void {
-    //this.onFirmarPDF();
+  iniciarFirma(event: Event): void {
     
   }
 
