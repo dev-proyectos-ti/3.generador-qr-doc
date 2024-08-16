@@ -33,7 +33,7 @@ public class FirmaUploadServlet extends HttpServlet {
 	    
 	    private static final long serialVersionUID = 1L;
 	    
-	    private String codRespuesta="";
+	    private String urlAnexoAlfresco="";
 
 	    public FirmaUploadServlet() {
 	        super();
@@ -65,8 +65,13 @@ public class FirmaUploadServlet extends HttpServlet {
 	        } catch (Exception ex) {
 	            LOG.warn(ex.getMessage(), ex);            
 	        }*/
-	        
-	        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET method is not supported.");
+	    	
+	        //response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET method is not supported.");
+	    	
+	    	response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write(urlAnexoAlfresco);
 	    }
 
 	    @Override
@@ -95,14 +100,14 @@ public class FirmaUploadServlet extends HttpServlet {
 
 	            			CreateResponse responsePrincipal = alfrescoUtil.uploadDocument(contentArchivo, fileNameArchivo,
 	            					directorioArchivo);
-	            			String urlAnexoAlfresco = responsePrincipal.getUuid();
+	            			//String urlAnexoAlfresco = responsePrincipal.getUuid();
+	            			urlAnexoAlfresco = responsePrincipal.getUuid();
 
-	            			//String codRespuesta = responsePrincipal.getCode();
-	            			codRespuesta = responsePrincipal.getCode();
+	            			String codRespuesta = responsePrincipal.getCode();
 
 	            			if (responsePrincipal.getCode().equals("00000")) { // Ya existe un archivo con el mismo nombre
 	            				System.out.println("OK");
-	            				 result = "{\"status\":\"success\",\"codigoAlfresco\":\"" + codRespuesta + "\"}";
+	            				 result = "{\"status\":\"success\",\"codigoAlfresco\":\"" + urlAnexoAlfresco + "\"}";
 	            			} else {
 	            				System.out.println("NOOK");
 	            				result = "{\"status\":\"error\",\"message\":\"Failed to upload document.\"}";
