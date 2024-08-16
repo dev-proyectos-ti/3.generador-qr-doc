@@ -28,11 +28,17 @@ public class SecurityConfig {
     @Autowired
     private DefAuthenticationEntryPoint authenticationEntryPoint;
 
+    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**").access(getIpBasedAuthorization())
+                		.requestMatchers(
+                                "/firmaUploadServlet",
+                                "/**"
+                                )
+                        .permitAll()
+                        //.requestMatchers("/**").access(getIpBasedAuthorization())
                         .anyRequest().authenticated())
                 .exceptionHandling(
                         exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint))

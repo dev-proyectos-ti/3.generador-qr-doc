@@ -21,7 +21,7 @@
             </button>
         </div>
         <div class="w-full text-right mt-4">
-            <button mat-flat-button class="!bg-minjus_primary !text-white !text-lg" (click)="initiateSigning()">
+            <button mat-flat-button class="!bg-minjus_primary !text-white !text-lg" (click)="iniciarFirma(f)">
                 <mat-icon><span class="material-symbols-outlined">edit</span></mat-icon>
                 Firmra PDF
             </button>
@@ -33,16 +33,34 @@
 
 </div>
 
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+
 <div>
-    <form class="bit4id-sign" (ngSubmit)="iniciarFirma($event)">
+  <div>{{documento}}</div>
+    <!--<form #f="ngForm" class="bit4id-sign" (ngSubmit)="iniciarFirma(f)" action="http://localhost:7000/generaqrdocumentosbackend/firmaUploadServlet" method="post">   -->
+    <form #f="ngForm" class="bit4id-sign" id="formFirma"  (ngSubmit)="enviarFormulario($event)"
+      action="http://localhost:7000/generaqrdocumentosbackend/firmaUploadServlet" method="post" enctype="multipart/form-data">
+
       <div class="bit4id-signReq" style="display: none;">
-        <div class="bit4id-document">
-            {{documento}}
-        </div>
-        <div class="bit4id-documentName">TEST PDF DOCUMENT</div>
+        
+        <div class="bit4id-document">{{documento}}</div>
+        <div class="bit4id-preview">YES</div>
+        <div id="bit4id-documentName" class="bit4id-documentName">test.pdf</div>
+        <div id="bit4id-documentID" class="bit4id-documentID">01</div>
+        <div class="bit4id-editpagepos">YES</div>
         <div class="bit4id-signatureType">PAdES</div>
-        <div class="bit4id-signingAlgorithm">RSASHA256</div>
+        <div class="bit4id-localFile">NO</div> 
         <div class="bit4id-certInfo">CN</div>
+        
+        <span>bit4id-paragraphFormat: </span>
+        <div class="bit4id-paragraphFormat" 
+            style="display:inline">{{formato}}
+        </div>
+        <!--<div class="bit4id-image">{{urlLogoFirma}}</div>  -->
+        <div class="bit4id-position">[50,50,200,100]</div>  
+        <div class="bit4id-page">0</div>
+
       </div>
       <div>
         <fieldset>
@@ -50,11 +68,25 @@
           <div><p><strong>Proceeding the document TestData.pdf will be signed, are you sure?</strong></p></div>
           <div id="bit4id-status"></div>
           <div>
-            <input type="submit" value="Sign Document" name="cmd">
+            <input type="submit" value="FIRMAR" name="cmd" id="btnFirmar"> 
+            <div id="bit4id-status" style="display: none;"></div>
           </div>
         </fieldset>
       </div>
     </form>
+</div>
+
+<div class="pt-3 text-lg">
+  <div class="flex flex-col gap-1">
+      <div class="flex items-center mt-1">
+          <div class="flex items-center">
+              <div class="flex">
+                  <mat-icon class="text-minjus_red">picture_as_pdf</mat-icon>
+              </div>
+              <label class="ml-2 cursor-pointer underline" (click)="onVerArchivo('e4b99c9c-9ff7-4d5e-b2ed-535eed4a40e6')">Ver Archivo</label>
+          </div>
+      </div>
   </div>
+</div>
 
   

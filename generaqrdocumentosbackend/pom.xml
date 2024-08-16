@@ -73,6 +73,12 @@
 		    <artifactId>javase</artifactId>
 		    <version>3.4.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>pe.gob.minjus.psm</groupId>
+			<artifactId>psm-alfresco</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 	</dependencies>
 

@@ -9,6 +9,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://www.4identity.eu/smartengine/bit4id-sign.min.js"></script>
+  <script>
+
+    function finalizarFirma() {
+            alert("Se finalizo la firma del documento.");
+            //document.getElementById("ifrmFirma").src = "";            
+            try{
+                //finalizarFirmaBean();
+
+            }catch(err){
+                alert(err)                
+            }
+    }
+
+    function iniciarFirma() {
+        console.log('entro iniciarFirma')
+        setTimeout(function () {
+            document.querySelector('.bit4-link').click();
+        }, 1000);
+    }
+    
+    function cancelar(){
+        console.log('entro cancelar');
+        try{
+            parent.cancelarDocumento();      
+            
+        }catch(err){
+            //alert(err)            
+        }
+    }
+
+    function loadingStatus(){
+        console.log('entro loadingStatus');
+        setTimeout(function(){
+            var html=document.querySelector('#bit4id-status').innerHTML;
+            html = html.trim();                    
+            if(html=="StopIteration:error" || html=="Disconnected:cancelled" || html=="Disconnected:channel does not exist"){
+                cancelar();
+            }else{
+                loadingStatus();
+            }
+        }, 1000);        
+    }
+    
+    loadingStatus();
+    
+</script>
 </head>
 <body>
   <app-root></app-root>
