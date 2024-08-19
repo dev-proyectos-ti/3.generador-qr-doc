@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
 import { UploadFileService } from '../../services/upload-file.service';
 import { UtilMinjus } from '../../../../core/utils/util-minjus';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class FirmaPdfComponentComponent implements OnInit  {
   preview='';
   localFile='';
   formato='';
+  parametro: string='';
 
   // Declaración del objeto JSON
   paragraphFormat: any = {
@@ -64,7 +66,9 @@ export class FirmaPdfComponentComponent implements OnInit  {
     private http: HttpClient,
     private uploadFileService: UploadFileService,
     private mensajes: MensajesService,
+    private route: ActivatedRoute,
   ) {}
+
   ngOnInit(): void {
 
     const form = document.getElementById('formFirma');
@@ -87,6 +91,19 @@ export class FirmaPdfComponentComponent implements OnInit  {
     "                                        \"Motivo: $(Reason)s\",\n" +
     "                                        \"Localizacion: $(Location)s\",\n" +
     "                                        \"Fecha: $(date)s\",]}]";
+
+    // Capturar el parámetro de la URL
+    this.route.queryParams.subscribe(params => {
+      if (params['parametro'] && params['parametro'].trim() !== '') {
+        this.parametro = params['parametro'];
+        console.log('Parametro:', this.parametro);
+        this.onVerArchivo(this.parametro);
+      } else {
+        console.log('El parámetro está vacío o no definido');
+        // Maneja la situación cuando el parámetro está vacío o no definido
+      }
+      
+    });
 
   }
 

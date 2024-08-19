@@ -40,7 +40,7 @@
   <div>{{documento}}</div>
     <!--<form #f="ngForm" class="bit4id-sign" (ngSubmit)="iniciarFirma(f)" action="http://localhost:7000/generaqrdocumentosbackend/firmaUploadServlet" method="post">   -->
     <form #f="ngForm" class="bit4id-sign" id="formFirma"
-      action="http://localhost:7000/generaqrdocumentosbackend/firmaUploadServlet" method="post">
+      action="http://localhost:7000/generaqrdocumentosbackend/firmaUploadServlet" method="post" enctype="multipart/form-data">
       <div class="bit4id-signReq" style="display: none;">
         
         <div class="bit4id-document">{{documento}}</div>

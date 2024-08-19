@@ -47,31 +47,18 @@ public class FirmaUploadServlet extends HttpServlet {
 	    @GetMapping
 	    @ResponseBody
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    	/*PrintWriter writer =  response.getWriter();
-	    	writer.write("Directorio temporal donde se almacenan los archivos: " + System.getProperty("java.io.tmpdir"));
-			writer.close();*/
-			
-			/*response.setContentType("text/html");
-	        try (PrintWriter out = response.getWriter()) {
-	            out.println("SIGNATURE MANAGEMENT SERVLET"+ codRespuesta);
-	            out.println("<script>");
-	            out.println("try{");
-	            out.println("finalizarFirma();");
-	            out.println("}catch(err){");
-	            out.println("alert(err);");
-	            out.println("}");
-	            out.println("</script>");
-	            
-	        } catch (Exception ex) {
-	            LOG.warn(ex.getMessage(), ex);            
-	        }*/
-	    	
-	        //response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET method is not supported.");
-	    	
+	    	    	
 	    	response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(urlAnexoAlfresco);
+            
+            String paramValue = urlAnexoAlfresco;  
+            String redirectUrl = "http://localhost:4200/#/firmar-pdf?parametro=" + paramValue; // Añade el parámetro a la URL
+            response.sendRedirect(redirectUrl); // Realiza la redirección
+            
+            System.out.println("fin ddoGett: "+redirectUrl);
+            
 	    }
 
 	    @Override
@@ -79,6 +66,15 @@ public class FirmaUploadServlet extends HttpServlet {
 		@ResponseBody
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	System.out.println("Entro doPost UploadServlet");
+	    	System.out.println("request.getContentType(): " + request.getContentType());
+	    	
+	    	if (request.getContentType()==null) {
+	    	    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	    	    response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid content type.\"}");
+	    	    return;
+	    	}
+
+	    	
 	        try {   
 	        	String result = ""; // Variable para almacenar el resultado a devolver
 	            	            
@@ -87,7 +83,6 @@ public class FirmaUploadServlet extends HttpServlet {
 	                if ("attach".equals(part.getName())) {                    
 	                    InputStream inputStream = part.getInputStream();
 	                    
-	                 // INSERTO ANEXOS en alfresco
 	            		AlfrescoUtil alfrescoUtil = new AlfrescoUtil();
 
 	            		byte[] contentArchivo = inputStream.readAllBytes();
@@ -126,10 +121,7 @@ public class FirmaUploadServlet extends HttpServlet {
 	            }
 	            
 	            
-	         // Escribir la respuesta en el objeto HttpServletResponse
-	            //response.getWriter().write(result);
-	            //response.setStatus(HttpServletResponse.SC_OK);
-	            
+            
 	            response.setContentType("application/json");
 	            response.setCharacterEncoding("UTF-8");
 	            response.setStatus(HttpServletResponse.SC_OK);
